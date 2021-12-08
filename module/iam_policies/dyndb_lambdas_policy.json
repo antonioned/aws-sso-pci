@@ -1,0 +1,31 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "CloudwatchAllow",
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "DynamoDBAllow",
+            "Effect": "Allow",
+            "Action": [
+                "dynamodb:*"
+            ],
+            "Resource": "${dynamodb_table_arn}"
+        },
+        {
+            "Sid": "IdentityStoreAllow",
+            "Effect": "Allow",
+            "Action": [
+                "identitystore:ListUsers",
+                "identitystore:DescribeUser"
+            ],
+            "Resource": "*"
+        }
+    ]
+}

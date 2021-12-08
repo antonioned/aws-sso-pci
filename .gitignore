@@ -1,0 +1,23 @@
+#  Local .terraform directories and files
+.terraform
+**/.terraform/*
+**/.terraform.lock.hcl
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+# .tfvars files
+*.tfvars
+
+.tool-versions
+
+# .zip files
+*.zip
+*.zip.*
+
+# .txt files
+*.txt
+
+# .sh files
+*.sh

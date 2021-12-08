@@ -1,0 +1,56 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "CloudwatchAllow",
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "SQSAllow",
+            "Effect": "Allow",
+            "Action": [
+                "sqs:List*",
+                "sqs:Get*",
+                "sqs:Send*"
+            ],
+            "Resource": "${sqs_queue_arn}"
+        },
+        {
+            "Sid": "CloudtrailAllow",
+            "Effect": "Allow",
+            "Action": [
+                "cloudtrail:Get*",
+                "cloudtrail:Describe*",
+                "cloudtrail:List*",
+                "cloudtrail:LookupEvents"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "DynamoDBAllow",
+            "Effect": "Allow",
+            "Action": [
+                "dynamodb:Scan",
+                "dynamodb:List*",
+                "dynamodb:Describe*",
+                "dynamodb:Get*"
+            ],
+            "Resource": "${dynamodb_table_arn}"
+        },
+        {
+            "Sid": "SQSKMSAllow",
+            "Effect": "Allow",
+            "Action": [
+                "kms:Decrypt",
+                "kms:GenerateDataKey*",
+                "kms:DescribeKey"
+            ],
+            "Resource": "${sqs_kms_key_arn}"
+        }
+    ]
+}

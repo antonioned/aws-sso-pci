@@ -1,0 +1,19 @@
+{
+    "Version": "2012-10-17",
+    "Id": "UseCase5",
+    "Statement": [{
+       "Sid": "AllowSQSPermissions",
+       "Effect": "Allow",
+       "Principal": {
+          "AWS": [
+            "arn:aws:iam::${aws_account_id}:root"
+          ]
+       },
+       "Action": [
+          "sqs:SendMessage",
+          "sqs:ReceiveMessage"
+       ],
+          "Resource": "${sqs_queue_arn}"
+       }
+    ]
+ }
