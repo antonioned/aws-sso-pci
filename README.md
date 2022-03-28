@@ -33,9 +33,9 @@ The repo contains terraform and python code that create the following:
 - AWS KMS keys to encrypt SQS queue and CW log groups
 
 ## Password expiration ##
-The password expiration Lambda function `sso_password_expiration.py` looks for the `UpdatePassword` event in Cloudtrail. Please be aware that this event is only triggered when an SSO admin triggers the `Reset Password` via the AWS SSO Console. When the SSO user themselves do the `Forgot Password?` procedure via the SSO portal, this event won't be triggered! A series of several other events are sent to Cloudtrail, but none of them really has the information we need in order to follow the age of the SSO user's password.
+The password expiration Lambda function `sso_password_expiration.py` looks for the `UpdatePassword` event in Cloudtrail. Please be aware that this event is only triggered when an SSO admin triggers the `Reset Password` via the AWS SSO Console. When the SSO user themselves do the `Forgot Password?` procedure via the SSO portal, this event **won't be triggered**! A series of several other events are sent to Cloudtrail, but none of them really has the information we need in order to follow the age of the SSO user's password.
 
-**So it is very important to note that SSO admins (users managing the service itself) have to reset a user's password and sent the instructions via email to the SSO user itself (so that they can then change their password).**
+**So it is very important to note that SSO admins (users managing the SSO) have to reset a user's password and send the instructions via email to the SSO user itself (so that they can then change their password).**
 
 ## User inactivity ##
 This Lambda function `sso_user_inactivity.py` looks for the `Authenticate` event in Cloudtrail. This event is triggered when an SSO user successfully signs in into the SSO portal, with that meaning they are still active. When the Lambda does not find this event for a certain SSO user in the last 86 days, it will send the list of user(s) that have not been active during this period. The SSO admin (users managint the SSO) should then disable this user or even delete it.
